@@ -11,6 +11,7 @@
 
   &_menu {
     cursor: pointer;
+    display: none;
   }
 
   &_logo {
@@ -83,6 +84,10 @@
 
     &_icons > *:not(img) {
       display: none;
+    }
+
+    &_menu {
+      display: block;
     }
   }
 }
