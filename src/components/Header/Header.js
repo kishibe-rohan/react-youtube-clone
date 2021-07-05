@@ -7,7 +7,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = ({ handleToggleSidebar }) => {
   return (
-    <div className="header border border-dark">
+    <div className="header">
       <FaBars
         className="header_menu"
         size={26}
