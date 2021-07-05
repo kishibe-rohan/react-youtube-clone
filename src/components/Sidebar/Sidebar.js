@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "./_sidebar.scss";
 
 import {
@@ -10,7 +11,13 @@ import {
   MdHome,
 } from "react-icons/md";
 
+import { logout } from "../../redux/actions/authActions";
+
 const Sidebar = ({ show, handleToggleSidebar }) => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <nav
       onClick={() => handleToggleSidebar(false)}
@@ -38,7 +45,7 @@ const Sidebar = ({ show, handleToggleSidebar }) => {
         <span>Library</span>
       </li>
       <hr />
-      <li>
+      <li onClick={handleLogout}>
         <MdExitToApp size={23} />
         <span>Log Out</span>
       </li>
