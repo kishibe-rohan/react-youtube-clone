@@ -19,8 +19,8 @@ export const popularVideosReducer = (
     case HOME_VIDEOS_SUCCESS:
       return {
         ...state,
-        isLoading: false,
         videos: action.payload.videos,
+        isLoading: false,
         nextPageToken: action.payload.nextPageToken,
         activeCategory: action.payload.category,
       };
