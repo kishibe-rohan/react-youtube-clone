@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./_sidebar.scss";
 
@@ -15,6 +16,7 @@ import { logout } from "../../redux/actions/authActions";
 
 const Sidebar = ({ show, handleToggleSidebar }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleLogout = () => {
     dispatch(logout());
   };
