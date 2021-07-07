@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Header from "./components/Header/Header";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import WatchScreen from "./screens/WatchScreen/WatchScreen";
 
 import "./_app.scss";
 
@@ -47,6 +48,11 @@ function App() {
       <Route path="/search">
         <Layout>
           <h1>Search Screen</h1>
+        </Layout>
+      </Route>
+      <Route path="/watch/:id">
+        <Layout>
+          <WatchScreen />
         </Layout>
       </Route>
       <Route>
