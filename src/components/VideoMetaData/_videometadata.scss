@@ -22,6 +22,9 @@
       border-radius: 0;
       text-transform: uppercase;
       letter-spacing: 0.1rem;
+      &.btn-gray {
+        background-color: gray;
+      }
       &:hover {
         color: #fff;
       }

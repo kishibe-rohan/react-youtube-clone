@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import moment from "moment";
 import numeral from "numeral";
@@ -6,6 +7,7 @@ import request from "../../api";
 import "./_video.scss";
 
 const Video = ({ video, id }) => {
+  const history = useHistory();
   const {
     snippet: {
       title,
@@ -58,9 +60,13 @@ const Video = ({ video, id }) => {
     getChannelDetails();
   }, [channelId]);
 
+  const handleVideoClick = () => {
+    history.push(`/watch/${_videoId}`);
+  };
+
   return (
     <div className="video">
-      <div className="video_top">
+      <div className="video_top" onClick={handleVideoClick}>
         <LazyLoadImage src={medium.url} effect="blur" />
         <span className="video_top_duration">{_duration}</span>
       </div>

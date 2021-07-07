@@ -2,6 +2,9 @@ import {
   HOME_VIDEOS_FAILURE,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
+  SPECIFIC_VIDEO_FAILURE,
+  SPECIFIC_VIDEO_REQUEST,
+  SPECIFIC_VIDEO_SUCCESS,
 } from "../constants";
 import request from "../../api";
 
@@ -66,5 +69,27 @@ export const getVideosByCategory = (keyword) => async (dispatch, getState) => {
       type: HOME_VIDEOS_FAILURE,
       payload: error.message,
     });
+  }
+};
+
+export const getVideoById = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SPECIFIC_VIDEO_REQUEST,
+    });
+
+    const { data } = await request("/videos", {
+      params: {
+        part: "snippet,statistics",
+        id,
+      },
+    });
+
+    dispatch({
+      type: SPECIFIC_VIDEO_SUCCESS,
+      payload: data.items[0],
+    });
+  } catch (error) {
+    dispatch({ type: SPECIFIC_VIDEO_FAILURE, payload: error.message });
   }
 };
