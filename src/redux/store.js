@@ -6,6 +6,7 @@ import { authReducer } from "./reducers/authReducers";
 import {
   popularVideosReducer,
   relatedVideosReducer,
+  searchVideosReducer,
   specificVideoReducer,
 } from "./reducers/videoReducers";
 import { channelDetailsReducer } from "./reducers/channelReducers";
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   popularVideos: popularVideosReducer,
   specificVideo: specificVideoReducer,
   relatedVideos: relatedVideosReducer,
+  searchVideos: searchVideosReducer,
   channelDetails: channelDetailsReducer,
   commentsList: commentsListReducer,
 });

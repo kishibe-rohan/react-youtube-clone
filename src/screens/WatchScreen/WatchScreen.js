@@ -10,6 +10,7 @@ import {
   getRelatedVideos,
 } from "../../redux/actions/videoActions";
 import "./_watchscreen.scss";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const WatchScreen = () => {
   const dispatch = useDispatch();
@@ -49,12 +50,17 @@ const WatchScreen = () => {
       </Col>
 
       <Col lg={4}>
-        {!videosLoading &&
+        {!videosLoading ? (
           videos
             ?.filter((video) => video.snippet)
             .map((relatedVideo, index) => (
               <VideoStretch video={relatedVideo} key={index} />
-            ))}
+            ))
+        ) : (
+          <SkeletonTheme color="#343a40" highlightColor="#3c4147">
+            <Skeleton width="100%" height="130px" count={10} />
+          </SkeletonTheme>
+        )}
       </Col>
     </Row>
   );

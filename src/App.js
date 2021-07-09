@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import WatchScreen from "./screens/WatchScreen/WatchScreen";
+import SearchScreen from "./screens/SearchScreen/SearchScreen";
 
 import "./_app.scss";
 
@@ -45,9 +46,9 @@ function App() {
       <Route path="/login">
         <LoginScreen />
       </Route>
-      <Route path="/search">
+      <Route path="/search/:query">
         <Layout>
-          <h1>Search Screen</h1>
+          <SearchScreen />
         </Layout>
       </Route>
       <Route path="/watch/:id">

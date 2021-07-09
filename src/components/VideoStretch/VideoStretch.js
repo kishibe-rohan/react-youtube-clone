@@ -7,14 +7,13 @@ import numeral from "numeral";
 import request from "../../api";
 import "./_videostretch.scss";
 
-const VideoStretch = ({ video }) => {
+const VideoStretch = ({ video, searchScreen }) => {
   const history = useHistory();
   const {
     id,
     snippet: {
       channelId,
       channelTitle,
-      description,
       title,
       publishedAt,
       thumbnails: { medium },
@@ -23,11 +22,9 @@ const VideoStretch = ({ video }) => {
 
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
-  const [channelIcon, setChannelIcon] = useState(null);
-
+  const _videoId = id?.videoId || id;
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
-  const _videoId = id?.videoId || id;
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -46,23 +43,6 @@ const VideoStretch = ({ video }) => {
     getVideoDetails();
   }, [_videoId]);
 
-  useEffect(() => {
-    const getChannelDetails = async () => {
-      const {
-        data: { items },
-      } = await request("/channels", {
-        params: {
-          part: "snippet",
-          id: channelId,
-        },
-      });
-
-      setChannelIcon(items[0].snippet.thumbnails.default);
-    };
-
-    getChannelDetails();
-  }, [channelId]);
-
   const handleVideoClick = () => {
     history.push(`/watch/${_videoId}`);
   };
@@ -71,7 +51,7 @@ const VideoStretch = ({ video }) => {
     <Row className="py-2 m-1 videoStretch align-items-start">
       <Col
         xs={6}
-        md={6}
+        md={searchScreen ? 4 : 6}
         className="videoStretch_left"
         onClick={handleVideoClick}
       >
@@ -83,7 +63,7 @@ const VideoStretch = ({ video }) => {
         />
         <span className="videoStretch_duration">{_duration}</span>
       </Col>
-      <Col xs={6} md={6} className="videoStretch_right p-0">
+      <Col xs={6} md={searchScreen ? 8 : 6} className="videoStretch_right p-0">
         <p className="videoStretch_title mb-1">{title}</p>
         <div className="videoStretch_channel d-flex align-items-center my-1">
           <p>{channelTitle}</p>

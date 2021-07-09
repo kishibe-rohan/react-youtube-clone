@@ -27,7 +27,7 @@ const Sidebar = ({ show, handleToggleSidebar }) => {
       className={show ? "sidebar open" : "sidebar"}
     >
       <li>
-        <MdHome size={23} />
+        <MdHome size={23} onClick={() => history.push("/")} />
         <span>Home</span>
       </li>
       <li>
