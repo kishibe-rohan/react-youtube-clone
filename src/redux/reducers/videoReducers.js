@@ -5,6 +5,9 @@ import {
   SPECIFIC_VIDEO_FAILURE,
   SPECIFIC_VIDEO_REQUEST,
   SPECIFIC_VIDEO_SUCCESS,
+  RELATED_VIDEO_FAILURE,
+  RELATED_VIDEO_SUCCESS,
+  RELATED_VIDEO_REQUEST,
 } from "../constants";
 
 export const popularVideosReducer = (
@@ -48,6 +51,29 @@ export const specificVideoReducer = (
       return { ...state, isLoading: false, video: action.payload };
     case SPECIFIC_VIDEO_FAILURE:
       return { ...state, isLoading: false, video: null, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const relatedVideosReducer = (
+  state = {
+    isLoading: true,
+    videos: [],
+  },
+  action
+) => {
+  switch (action.type) {
+    case RELATED_VIDEO_REQUEST:
+      return { ...state, isLoading: true };
+    case RELATED_VIDEO_SUCCESS:
+      return { ...state, isLoading: false, videos: action.payload };
+    case RELATED_VIDEO_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

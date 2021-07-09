@@ -5,6 +5,9 @@ import {
   SPECIFIC_VIDEO_FAILURE,
   SPECIFIC_VIDEO_REQUEST,
   SPECIFIC_VIDEO_SUCCESS,
+  RELATED_VIDEO_FAILURE,
+  RELATED_VIDEO_SUCCESS,
+  RELATED_VIDEO_REQUEST,
 } from "../constants";
 import request from "../../api";
 
@@ -91,5 +94,32 @@ export const getVideoById = (id) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({ type: SPECIFIC_VIDEO_FAILURE, payload: error.message });
+  }
+};
+
+export const getRelatedVideos = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: RELATED_VIDEO_REQUEST,
+    });
+
+    const { data } = await request("/search", {
+      params: {
+        part: "snippet",
+        maxResults: 10,
+        relatedToVideoId: id,
+        type: "video",
+      },
+    });
+
+    dispatch({
+      type: RELATED_VIDEO_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: RELATED_VIDEO_FAILURE,
+      payload: error.response.data.message,
+    });
   }
 };

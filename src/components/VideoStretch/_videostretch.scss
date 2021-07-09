@@ -18,11 +18,12 @@
 
   &_duration {
     position: absolute;
-    bottom: 0.3rem;
-    right: 0.3rem;
+    bottom: 0rem;
+    right: 0.8rem;
     padding: 0.2rem;
     background: #080808;
     border-radius: 3px;
+    font-size: 0.9rem;
   }
 
   &_details {

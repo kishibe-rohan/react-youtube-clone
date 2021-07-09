@@ -3,19 +3,21 @@ import moment from "moment";
 
 import "./_comment.scss";
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const { authorDisplayName, authorProfileImageUrl, publishedAt, textDisplay } =
+    comment;
   return (
     <div className="comment p-2 d-flex ">
       <img
-        src="https://www.pngfind.com/pngs/m/488-4887957_facebook-teerasej-profile-ball-circle-circular-profile-picture.png"
+        src={authorProfileImageUrl}
         alt="user_icon"
         className="rounded-circle mr-3"
       />
       <div className="comment_body">
         <p className="comment_header mb-1">
-          User Name - {moment("2020-06-11").fromNow()}
+          {authorDisplayName} · {moment(publishedAt).fromNow()}
         </p>
-        <p className="mb-0">User Commented this hello hey test comment</p>
+        <p className="mb-0">{textDisplay}</p>
       </div>
     </div>
   );

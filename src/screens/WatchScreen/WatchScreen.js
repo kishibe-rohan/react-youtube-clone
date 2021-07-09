@@ -5,7 +5,10 @@ import { Row, Col } from "react-bootstrap";
 import Comments from "../../components/Comments/Comments";
 import VideoMetaData from "../../components/VideoMetaData/VideoMetaData";
 import VideoStretch from "../../components/VideoStretch/VideoStretch";
-import { getVideoById } from "../../redux/actions/videoActions";
+import {
+  getVideoById,
+  getRelatedVideos,
+} from "../../redux/actions/videoActions";
 import "./_watchscreen.scss";
 
 const WatchScreen = () => {
@@ -13,9 +16,13 @@ const WatchScreen = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getVideoById(id));
+    dispatch(getRelatedVideos(id));
   }, [id, dispatch]);
 
   const { video, isLoading } = useSelector((state) => state.specificVideo);
+  const { videos, isLoading: videosLoading } = useSelector(
+    (state) => state.relatedVideos
+  );
 
   return (
     <Row>
@@ -34,14 +41,20 @@ const WatchScreen = () => {
           ) : (
             <h6>Loading</h6>
           )}
-          <Comments />
+          <Comments
+            videoId={id}
+            totalComments={video?.statistics?.commentCount}
+          />
         </div>
       </Col>
 
       <Col lg={4}>
-        {[...Array(10)].map(() => (
-          <VideoStretch />
-        ))}
+        {!videosLoading &&
+          videos
+            ?.filter((video) => video.snippet)
+            .map((relatedVideo, index) => (
+              <VideoStretch video={relatedVideo} key={index} />
+            ))}
       </Col>
     </Row>
   );

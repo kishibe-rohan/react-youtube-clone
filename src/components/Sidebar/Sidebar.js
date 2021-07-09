@@ -19,6 +19,7 @@ const Sidebar = ({ show, handleToggleSidebar }) => {
   const history = useHistory();
   const handleLogout = () => {
     dispatch(logout());
+    history.push("/");
   };
   return (
     <nav
