@@ -12,6 +12,11 @@
   top: 10vh;
   left: 0;
 
+  a {
+    color: $text-color;
+    text-decoration: none;
+  }
+
   li {
     display: flex;
     align-items: center;

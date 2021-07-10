@@ -9,7 +9,11 @@ import {
   searchVideosReducer,
   specificVideoReducer,
 } from "./reducers/videoReducers";
-import { channelDetailsReducer } from "./reducers/channelReducers";
+import {
+  channelDetailsReducer,
+  channelVideosReducer,
+  subscriptionsChannelReducer,
+} from "./reducers/channelReducers";
 import { commentsListReducer } from "./reducers/commentReducer";
 
 const reducer = combineReducers({
@@ -19,6 +23,8 @@ const reducer = combineReducers({
   relatedVideos: relatedVideosReducer,
   searchVideos: searchVideosReducer,
   channelDetails: channelDetailsReducer,
+  subscriptionChannels: subscriptionsChannelReducer,
+  channelVideos: channelVideosReducer,
   commentsList: commentsListReducer,
 });
 

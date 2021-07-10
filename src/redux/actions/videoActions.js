@@ -138,7 +138,7 @@ export const getVideosBySearch = (keyword) => async (dispatch) => {
         part: "snippet",
         maxResults: 20,
         q: keyword,
-        type: "video",
+        type: "video,channel",
       },
     });
 

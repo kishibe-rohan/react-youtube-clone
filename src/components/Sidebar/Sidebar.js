@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./_sidebar.scss";
 
@@ -26,14 +26,20 @@ const Sidebar = ({ show, handleToggleSidebar }) => {
       onClick={() => handleToggleSidebar(false)}
       className={show ? "sidebar open" : "sidebar"}
     >
-      <li>
-        <MdHome size={23} onClick={() => history.push("/")} />
-        <span>Home</span>
-      </li>
-      <li>
-        <MdSubscriptions size={23} />
-        <span>Subscriptions</span>
-      </li>
+      <Link to="/">
+        <li>
+          <MdHome size={23} />
+          <span>Home</span>
+        </li>
+      </Link>
+
+      <Link to="/feed/subscriptions">
+        <li>
+          <MdSubscriptions size={23} />
+          <span>Subscriptions</span>
+        </li>
+      </Link>
+
       <li>
         <MdThumbUp size={23} />
         <span>Liked videos</span>
