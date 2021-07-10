@@ -16,6 +16,7 @@ const Video = ({ video, id }) => {
       publishedAt,
       thumbnails: { medium },
     },
+    contentDetails,
   } = video;
 
   const [views, setViews] = useState(null);
@@ -24,7 +25,7 @@ const Video = ({ video, id }) => {
 
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
-  const _videoId = id?.videoId || id;
+  const _videoId = id?.videoId || contentDetails?.videoId || id;
 
   useEffect(() => {
     const getVideoDetails = async () => {
