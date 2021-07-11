@@ -23,6 +23,10 @@ const keywords = [
   "Comedy",
   "Woodworking",
   "Tools",
+  "Street Food",
+  "Bring Me The Horizon",
+  "CrossFit",
+  "Subnautica: Below Zero",
 ];
 
 const Categories = () => {

@@ -11,6 +11,9 @@ import {
   SEARCH_VIDEO_REQUEST,
   SEARCH_VIDEO_FAILURE,
   SEARCH_VIDEO_SUCCESS,
+  USER_LIKED_VIDEOS_FAILURE,
+  USER_LIKED_VIDEOS_REQUEST,
+  USER_LIKED_VIDEOS_SUCCESS,
 } from "../constants";
 import request from "../../api";
 
@@ -151,5 +154,29 @@ export const getVideosBySearch = (keyword) => async (dispatch) => {
       type: SEARCH_VIDEO_FAILURE,
       payload: error.message,
     });
+  }
+};
+
+export const getLikedVideos = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_LIKED_VIDEOS_REQUEST });
+
+    const { data } = await request("/videos", {
+      params: {
+        part: "snippet,contentDetails,statistics",
+        myRating: "like",
+        maxResults: 20,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+
+    dispatch({
+      type: USER_LIKED_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({ type: USER_LIKED_VIDEOS_FAILURE, payload: error.message });
   }
 };

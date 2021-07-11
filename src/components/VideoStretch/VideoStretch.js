@@ -7,7 +7,7 @@ import numeral from "numeral";
 import request from "../../api";
 import "./_videostretch.scss";
 
-const VideoStretch = ({ video, searchScreen, subScreen }) => {
+const VideoStretch = ({ video, searchScreen, subScreen, likedScreen }) => {
   const history = useHistory();
   const {
     id,
@@ -47,7 +47,7 @@ const VideoStretch = ({ video, searchScreen, subScreen }) => {
     };
 
     if (isVideo) getVideoDetails();
-  }, [_videoId]);
+  }, [id, _videoId]);
 
   useEffect(() => {
     const getChannelDetails = async () => {
@@ -56,14 +56,14 @@ const VideoStretch = ({ video, searchScreen, subScreen }) => {
       } = await request("/channels", {
         params: {
           part: "snippet",
-          id: channelId,
+          id: _channelId,
         },
       });
       setChannelIcon(items[0].snippet.thumbnails.default);
     };
 
     getChannelDetails();
-  }, [channelId]);
+  }, [_channelId]);
 
   const handleClick = () => {
     isVideo
@@ -77,7 +77,7 @@ const VideoStretch = ({ video, searchScreen, subScreen }) => {
     <Row className="py-2 m-1 videoStretch align-items-start">
       <Col
         xs={6}
-        md={searchScreen || subScreen ? 4 : 6}
+        md={searchScreen || subScreen || likedScreen ? 4 : 6}
         className="videoStretch_left"
         onClick={handleClick}
       >
@@ -91,7 +91,7 @@ const VideoStretch = ({ video, searchScreen, subScreen }) => {
       </Col>
       <Col
         xs={6}
-        md={searchScreen || subScreen ? 8 : 6}
+        md={searchScreen || subScreen || likedScreen ? 8 : 6}
         className="videoStretch_right p-0"
       >
         <p className="videoStretch_title mb-1">{title}</p>
@@ -106,7 +106,7 @@ const VideoStretch = ({ video, searchScreen, subScreen }) => {
           </div>
         )}
 
-        {(searchScreen || subScreen) && (
+        {(searchScreen || subScreen || likedScreen) && (
           <p className="mt-1 videoStretch_desc">{description}</p>
         )}
 

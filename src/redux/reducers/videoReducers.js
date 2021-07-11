@@ -11,6 +11,9 @@ import {
   SEARCH_VIDEO_REQUEST,
   SEARCH_VIDEO_FAILURE,
   SEARCH_VIDEO_SUCCESS,
+  USER_LIKED_VIDEOS_FAILURE,
+  USER_LIKED_VIDEOS_REQUEST,
+  USER_LIKED_VIDEOS_SUCCESS,
 } from "../constants";
 
 export const popularVideosReducer = (
@@ -95,6 +98,29 @@ export const searchVideosReducer = (
     case SEARCH_VIDEO_SUCCESS:
       return { ...state, isLoading: false, videos: action.payload };
     case SEARCH_VIDEO_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const likedVideosReducer = (
+  state = {
+    isLoading: true,
+    videos: [],
+  },
+  action
+) => {
+  switch (action.type) {
+    case USER_LIKED_VIDEOS_REQUEST:
+      return { ...state, isLoading: true };
+    case USER_LIKED_VIDEOS_SUCCESS:
+      return { ...state, isLoading: false, videos: action.payload };
+    case USER_LIKED_VIDEOS_FAILURE:
       return {
         ...state,
         isLoading: false,

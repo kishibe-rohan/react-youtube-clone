@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import { authReducer } from "./reducers/authReducers";
 import {
+  likedVideosReducer,
   popularVideosReducer,
   relatedVideosReducer,
   searchVideosReducer,
@@ -22,6 +23,7 @@ const reducer = combineReducers({
   specificVideo: specificVideoReducer,
   relatedVideos: relatedVideosReducer,
   searchVideos: searchVideosReducer,
+  likedVideos: likedVideosReducer,
   channelDetails: channelDetailsReducer,
   subscriptionChannels: subscriptionsChannelReducer,
   channelVideos: channelVideosReducer,
