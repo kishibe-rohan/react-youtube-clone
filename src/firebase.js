@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDAGpN0kah_iAKVTjW7POkLh6Cj8Qr8Vc8",
+  apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
   authDomain: "reactube-a9753.firebaseapp.com",
   projectId: "reactube-a9753",
   storageBucket: "reactube-a9753.appspot.com",

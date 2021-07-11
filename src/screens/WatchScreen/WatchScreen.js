@@ -49,7 +49,7 @@ const WatchScreen = () => {
         </div>
       </Col>
 
-      <Col lg={4}>
+      <Col lg={4} className="watchScreen_relatedVideos">
         {!videosLoading ? (
           videos
             ?.filter((video) => video.snippet)
