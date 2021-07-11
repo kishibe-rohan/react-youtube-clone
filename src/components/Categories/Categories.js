@@ -27,7 +27,6 @@ const keywords = [
   "Bring Me The Horizon",
   "CrossFit",
   "Subnautica: Below Zero",
-  "Pewdiepie",
 ];
 
 const Categories = () => {
